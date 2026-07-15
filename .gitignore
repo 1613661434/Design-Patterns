@@ -1,6 +1,7 @@
 # IDE
 .vscode/
 .idea/
+.claude/
 
 # C++ 编译产物
 *.exe
