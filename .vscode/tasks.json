@@ -1,0 +1,598 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build-all",
+      "detail": "编译全部 24 个设计模式",
+      "type": "shell",
+      "windows": {
+        "command": "$cats = @('01_创建型模式','02_结构型模式','03_行为模式'); foreach ($c in $cats) { Get-ChildItem $c -Directory | ForEach-Object { Write-Host \"=== $($_.Name) ===\"; make -C $_.FullName -s; if ($LASTEXITCODE -ne 0) { exit 1 } } }; Write-Host '全部编译完成!'"
+      },
+      "linux": {
+        "command": "/bin/sh",
+        "args": [
+          "-c",
+          "for d in 01_创建型模式/*/ 02_结构型模式/*/ 03_行为模式/*/; do echo \"=== $$d ===\"; make -C \"$$d\" -s || exit 1; done && echo '全部编译完成!'"
+        ]
+      },
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "clean-all",
+      "detail": "清理全部编译产物",
+      "type": "shell",
+      "windows": {
+        "command": "$cats = @('01_创建型模式','02_结构型模式','03_行为模式'); foreach ($c in $cats) { Get-ChildItem $c -Directory | ForEach-Object { make -C $_.FullName clean -s 2>$null } }; Write-Host '全部清理完成!'"
+      },
+      "linux": {
+        "command": "/bin/sh",
+        "args": [
+          "-c",
+          "for d in 01_创建型模式/*/ 02_结构型模式/*/ 03_行为模式/*/; do make -C \"$$d\" clean -s 2>/dev/null; done && echo '全部清理完成!'"
+        ]
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "▶ 单例模式 (Singleton)",
+      "detail": "饿汉模式 + 懒汉模式, 多线程安全任务队列",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "01_创建型模式/01_单例模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 简单工厂模式 (Simple Factory)",
+      "detail": "恶魔果实工厂, 根据类型创建产品",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "01_创建型模式/02_简单工厂模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 工厂模式 (Factory Method)",
+      "detail": "每种果实形态有专门的工厂类",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "01_创建型模式/03_工厂模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 抽象工厂模式 (Abstract Factory)",
+      "detail": "战船生产系统: 船体+武器+动力产品族",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "01_创建型模式/04_抽象工厂模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 建造者模式 (Builder)",
+      "detail": "桑尼号/梅利号分步骤构建",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "01_创建型模式/05_建造者模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 原型模式 (Prototype)",
+      "detail": "杰尔马超级士兵克隆复制",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "01_创建型模式/06_原型模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 适配器模式 (Adapter)",
+      "detail": "乔巴翻译官: 熊猫与外国人交流",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "02_结构型模式/01_适配器模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 桥接模式 (Bridge)",
+      "detail": "船只(抽象)与海贼团(实现)分离",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "02_结构型模式/02_桥接模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 组合模式 (Composite)",
+      "detail": "草帽大船团树形战斗编队",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "02_结构型模式/03_组合模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 装饰模式 (Decorator)",
+      "detail": "黑胡子动态获得恶魔果实能力",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "02_结构型模式/04_装饰模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 外观模式 (Facade)",
+      "detail": "桑尼号狮吼炮发射系统简化",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "02_结构型模式/05_外观模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 享元模式 (Flyweight)",
+      "detail": "炸弹弹体共享, 减少内存消耗",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "02_结构型模式/06_享元模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 代理模式 (Proxy)",
+      "detail": "电话虫代理模仿通话者",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "02_结构型模式/07_代理模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 责任链模式 (Chain of Resp.)",
+      "detail": "员工请求: 经理→CEO→老板",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "03_行为模式/01_责任链模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 命令模式 (Command)",
+      "detail": "餐厅点餐系统: 服务员→厨师",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "03_行为模式/02_命令模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 解释器模式 (Interpreter)",
+      "detail": "算术表达式解析: (3+(5-2))+7 = 13",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "03_行为模式/03_解释器模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 迭代器模式 (Iterator)",
+      "detail": "百兽海贼团名单正向/逆向遍历",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "03_行为模式/04_迭代器模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 中介者模式 (Mediator)",
+      "detail": "国家外交: 世界政府 vs 革命军",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "03_行为模式/05_中介者模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 备忘录模式 (Memento)",
+      "detail": "脚盆鸡罪行历史快照与回滚",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "03_行为模式/06_备忘录模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 观察者模式 (Observer)",
+      "detail": "新闻社订阅: 摩根斯+八卦新闻",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "03_行为模式/07_观察者模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 策略模式 (Strategy)",
+      "detail": "路飞战斗: 一档~五档动态切换",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "03_行为模式/08_策略模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 状态模式 (State)",
+      "detail": "山治的一天: 上午→中午→下午→晚上",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "03_行为模式/09_状态模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 模板方法模式 (Template Method)",
+      "detail": "贝加庞克机器人: 和平主义者→炽天使",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "03_行为模式/10_模板方法模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "▶ 访问者模式 (Visitor)",
+      "detail": "草帽团面对敌人: 愤怒/恐惧反应",
+      "type": "shell",
+      "command": "make",
+      "args": [
+        "-C",
+        "03_行为模式/11_访问者模式",
+        "run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$gcc"
+    }
+  ]
+}
