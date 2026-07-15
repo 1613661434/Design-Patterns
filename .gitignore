@@ -1,0 +1,44 @@
+# IDE
+.vscode/
+.idea/
+
+# C++ 编译产物
+*.exe
+*.out
+*.o
+*.obj
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Debug / Release 目录
+Debug/
+Release/
+bin/
+obj/
+build/
+
+# Visual Studio
+*.vcxproj.user
+*.suo
+*.sdf
+*.opensdf
+*.tlog
+*.lastbuildstate
+*.idb
+*.pdb
+*.ilk
+*.aps
+*.ipch
+*.ncb
+*.opt
+*.plg
+*.user
+*.filters
+*.sln.docstates
+
+# 其他
+.DS_Store
+Thumbs.db

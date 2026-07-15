@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"d:/Visual Studio Code/Projects/Design Pattern\" status)",
+      "Bash(git add *)"
+    ]
+  }
+}
